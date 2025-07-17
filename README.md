@@ -12,7 +12,11 @@ Utiliza clientes Feign para consumir APIs externas REST, PostgreSQL para persist
 - **Manejo centralizado de excepciones**
 - **Registro de respuestas con JPA**
 - **Caché para mejorar el rendimiento**
-- **Configuración flexible vía `application.yml`**
+- **Configuración flexible vía `application.yml` cambiar el hostname si se ejecuta en local o en docker.**
+- **Docker = postgres**
+- **Local = localhot**
+
+
 
 ## Principios SOLID
 Este proyecto sigue los principios SOLID para garantizar un código mantenible, escalable y robusto:
@@ -51,8 +55,8 @@ src/test/java/com/bankaya/soap_service/   # Pruebas unitarias e integrales
 1. **Clona el repositorio**
 
     ```bash
-    git clone https://github.com/JulioJohan/pokemon-soap-service.git
-    cd pokemon-soap-service
+    git clone https://github.com/JulioJohan/pokemon-api-soap.git
+    cd pokemon-api-soap
     ```
 
 2. **Levanta PostgreSQL con Docker**
