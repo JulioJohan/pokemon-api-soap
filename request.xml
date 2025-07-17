@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://bankaya/pokemon/api/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:getPokemonAbilitiesRequest>
+            <gs:name>ditto</gs:name>
+        </gs:getPokemonAbilitiesRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

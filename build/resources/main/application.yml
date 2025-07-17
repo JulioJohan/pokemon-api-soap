@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: "bankaya-pokemon-soap-service"
+  datasource:
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 10
+      idle-timeout: 600000
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${postgresql.datasource.hostname}:${postgresql.datasource.port}/${postgresql.datasource.database}
+    password: ${postgresql.datasource.password}
+    username: ${postgresql.datasource.username}
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      #when insert table, update to status update
+      ddl-auto: create-drop
+
+pokemon:
+  api:
+    url: ${cloud.pokemon.api.url}
+
+resilience4j:
+  retry:
+    instances:
+      pokemonApi:
+        max-attempts: 3
+        wait-duration: 2s
+
+cloud:
+  pokemon:
+    api:
+      url: "https://pokeapi.co/api/v2"
+
+postgresql:
+  datasource:
+    username: "postgres"
+    password: "password"
+    hostname: "postgres"
+    port: 5432
+    database: pokemon

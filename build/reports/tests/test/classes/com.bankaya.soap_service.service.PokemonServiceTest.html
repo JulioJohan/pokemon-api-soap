@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - PokemonServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>PokemonServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.bankaya.soap_service.service.html">com.bankaya.soap_service.service</a> &gt; PokemonServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.660s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">getInfoPokemonTest()</td>
+<td class="success">0.660s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2025-07-16T23:09:18.544-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.bankaya.soap_service.service.PokemonServiceTest]: PokemonServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-07-16T23:09:18.552-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.bankaya.soap_service.SoapServiceApplication for test class com.bankaya.soap_service.service.PokemonServiceTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.3)
+
+2025-07-16T23:09:18.576-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] c.b.s.service.PokemonServiceTest         : Starting PokemonServiceTest using Java 21.0.6 with PID 40252 (started by x374019 in /Users/x374019/Documentos/bankaya/soap-service)
+2025-07-16T23:09:18.577-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] c.b.s.service.PokemonServiceTest         : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2025-07-16T23:09:18.883-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-16T23:09:18.979-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 1 JPA repository interface.
+2025-07-16T23:09:19.339-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] EmbeddedDatabaseContextCustomizerFactory : Replacing 'dataSource' DataSource bean with embedded version
+2025-07-16T23:09:19.417-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=532a97a7-7609-3fbc-91ff-0d4d97764583
+2025-07-16T23:09:19.472-06:00  WARN 40252 --- [bankaya-pokemon-soap-service] [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [annotationActionEndpointMapping] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2025-07-16T23:09:19.473-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2025-07-16T23:09:19.485-06:00  WARN 40252 --- [bankaya-pokemon-soap-service] [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'io.zonky.test.db.config.EmbeddedDatabaseAutoConfiguration' of type [io.zonky.test.db.config.EmbeddedDatabaseAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [flywayPropertiesPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2025-07-16T23:09:19.855-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [  prefetching-1] i.z.t.d.p.embedded.EmbeddedPostgres      : Detected a Darwin aarch64 system
+2025-07-16T23:09:19.856-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [  prefetching-1] .z.t.d.p.e.DefaultPostgresBinaryResolver : Detected distribution: 'Unknown'
+2025-07-16T23:09:19.858-06:00  WARN 40252 --- [bankaya-pokemon-soap-service] [  prefetching-1] .z.t.d.p.e.DefaultPostgresBinaryResolver : No native binaries supporting ARM architecture found. Trying to use binaries for x64 architecture instead: 'postgres-darwin-x86_64.txz'. Make sure you have enabled emulation for this purpose. Note that performance may be degraded.
+2025-07-16T23:09:19.966-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [  prefetching-1] i.z.t.d.p.embedded.EmbeddedPostgres      : Postgres binaries at /var/folders/fn/4m9m5q555x502clvf15kxmym0000gp/T/embedded-pg/PG-8d4290f2a0ea524e9655c020387bc295
+2025-07-16T23:09:20.045-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : The files belonging to this database system will be owned by user &quot;x374019&quot;.
+2025-07-16T23:09:20.045-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : This user must also own the server process.
+2025-07-16T23:09:20.045-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : 
+2025-07-16T23:09:20.045-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : The database cluster will be initialized with locales
+2025-07-16T23:09:20.045-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      :   COLLATE:  C
+2025-07-16T23:09:20.045-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      :   CTYPE:    UTF-8
+2025-07-16T23:09:20.045-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      :   MESSAGES: C
+2025-07-16T23:09:20.045-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      :   MONETARY: C
+2025-07-16T23:09:20.045-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      :   NUMERIC:  C
+2025-07-16T23:09:20.045-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      :   TIME:     C
+2025-07-16T23:09:20.045-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : initdb: could not find suitable text search configuration for locale &quot;UTF-8&quot;
+2025-07-16T23:09:20.045-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : The default text search configuration will be set to &quot;simple&quot;.
+2025-07-16T23:09:20.046-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : 
+2025-07-16T23:09:20.046-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : Data page checksums are disabled.
+2025-07-16T23:09:20.046-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : 
+2025-07-16T23:09:20.046-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : fixing permissions on existing directory /var/folders/fn/4m9m5q555x502clvf15kxmym0000gp/T/epg17858026710272323326 ... ok
+2025-07-16T23:09:20.046-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : creating subdirectories ... ok
+2025-07-16T23:09:20.047-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : selecting dynamic shared memory implementation ... posix
+2025-07-16T23:09:20.090-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : selecting default max_connections ... 100
+2025-07-16T23:09:20.119-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : selecting default shared_buffers ... 128MB
+2025-07-16T23:09:20.120-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : selecting default time zone ... America/Mexico_City
+2025-07-16T23:09:20.122-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : creating configuration files ... ok
+2025-07-16T23:09:20.274-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : running bootstrap script ... ok
+2025-07-16T23:09:20.653-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : performing post-bootstrap initialization ... ok
+2025-07-16T23:09:20.676-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : syncing data to disk ... ok
+2025-07-16T23:09:20.676-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : 
+2025-07-16T23:09:20.677-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : Success. You can now start the database server using:
+2025-07-16T23:09:20.677-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : 
+2025-07-16T23:09:20.677-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      :     /var/folders/fn/4m9m5q555x502clvf15kxmym0000gp/T/embedded-pg/PG-8d4290f2a0ea524e9655c020387bc295/bin/pg_ctl -D /var/folders/fn/4m9m5q555x502clvf15kxmym0000gp/T/epg17858026710272323326 -l logfile start
+2025-07-16T23:09:20.677-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [itdb:pid(40273)] i.z.t.d.p.embedded.EmbeddedPostgres      : 
+2025-07-16T23:09:20.677-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [  prefetching-1] i.z.t.d.p.embedded.EmbeddedPostgres      : 6eb7c7a4-13a5-4fee-9281-1b4c6826bd24 initdb completed in 00:00:00.709
+2025-07-16T23:09:20.686-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [  prefetching-1] i.z.t.d.p.embedded.EmbeddedPostgres      : 6eb7c7a4-13a5-4fee-9281-1b4c6826bd24 postmaster started as Process[pid=40285, exitValue=&quot;not exited&quot;] on port 49706.  Waiting up to PT20S for server startup to finish.
+2025-07-16T23:09:20.750-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [gres:pid(40285)] i.z.t.d.p.embedded.EmbeddedPostgres      : waiting for server to start....2025-07-16 23:09:20.750 CST [40287] LOG:  starting PostgreSQL 14.15 on x86_64-apple-darwin23.6.0, compiled by Apple clang version 16.0.0 (clang-1600.0.26.4), 64-bit
+2025-07-16T23:09:20.751-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [gres:pid(40285)] i.z.t.d.p.embedded.EmbeddedPostgres      : 2025-07-16 23:09:20.751 CST [40287] LOG:  listening on IPv6 address &quot;::1&quot;, port 49706
+2025-07-16T23:09:20.751-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [gres:pid(40285)] i.z.t.d.p.embedded.EmbeddedPostgres      : 2025-07-16 23:09:20.751 CST [40287] LOG:  listening on IPv4 address &quot;127.0.0.1&quot;, port 49706
+2025-07-16T23:09:20.752-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [gres:pid(40285)] i.z.t.d.p.embedded.EmbeddedPostgres      : 2025-07-16 23:09:20.752 CST [40287] LOG:  listening on Unix socket &quot;/tmp/.s.PGSQL.49706&quot;
+2025-07-16T23:09:20.753-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [gres:pid(40285)] i.z.t.d.p.embedded.EmbeddedPostgres      : 2025-07-16 23:09:20.753 CST [40288] LOG:  database system was shut down at 2025-07-16 23:09:20 CST
+2025-07-16T23:09:20.755-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [gres:pid(40285)] i.z.t.d.p.embedded.EmbeddedPostgres      : 2025-07-16 23:09:20.755 CST [40287] LOG:  database system is ready to accept connections
+2025-07-16T23:09:20.822-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [gres:pid(40285)] i.z.t.d.p.embedded.EmbeddedPostgres      :  done
+2025-07-16T23:09:20.822-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [gres:pid(40285)] i.z.t.d.p.embedded.EmbeddedPostgres      : server started
+2025-07-16T23:09:20.880-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [  prefetching-1] i.z.t.d.p.embedded.EmbeddedPostgres      : 6eb7c7a4-13a5-4fee-9281-1b4c6826bd24 postmaster startup finished in 00:00:00.199
+2025-07-16T23:09:21.114-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-16T23:09:21.149-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-16T23:09:21.172-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-16T23:09:21.251-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-16T23:09:21.295-06:00  WARN 40252 --- [bankaya-pokemon-soap-service] [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-16T23:09:21.304-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'io.zonky.test.db.provider.support.BlockingDatabaseWrapper@2ad6214d']
+	Database driver: undefined/unknown
+	Database version: 14.15
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-16T23:09:21.794-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-16T23:09:21.822-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-16T23:09:22.143-06:00  WARN 40252 --- [bankaya-pokemon-soap-service] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-16T23:09:23.794-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-07-16T23:09:23.875-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] c.b.s.service.PokemonServiceTest         : Started PokemonServiceTest in 5.321 seconds (process running for 8.295)
+2025-07-16T23:09:23.963-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] i.z.t.d.l.EmbeddedDatabaseReporter       : JDBC URL to connect to 'dataSource': url='jdbc:postgresql://localhost:49706/fduddrhpoyvd?user=postgres', scope='PokemonServiceTest#getInfoPokemonTest'
+2025-07-16T23:09:23.981-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] c.b.soap_service.service.PokemonService  : Fetching Pokemon data for pikachu:
+2025-07-16T23:09:24.529-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] c.b.soap_service.service.PokemonService  : Response ResponseLogEntity(id=null, originIp=, requestDate=2025-07-16T23:09:23.981453, requestDuration=547, executedMethod=getInfoPokemon, request=pikachu, response=PokemonResponse(id=25, name=pikachu, abilities=[Ability(ability=AbilityDetail(name=static, url=https://pokeapi.co/api/v2/ability/9/), isHidden=false, slot=1), Ability(ability=AbilityDetail(name=lightning-rod, url=https://pokeapi.co/api/v2/ability/31/), isHidden=true, slot=3)], baseExperience=112, locationAreaEncounters=https://pokeapi.co/api/v2/pokemon/25/encounters, heldItems=[Item(item=ItemDetail(name=oran-berry, url=https://pokeapi.co/api/v2/item/132/), versionDetails=[Version(rarity=50, version=VersionDetail(name=ruby, url=https://pokeapi.co/api/v2/version/7/)), Version(rarity=50, version=VersionDetail(name=sapphire, url=https://pokeapi.co/api/v2/version/8/)), Version(rarity=50, version=VersionDetail(name=emerald, url=https://pokeapi.co/api/v2/version/9/)), Version(rarity=50, version=VersionDetail(name=diamond, url=https://pokeapi.co/api/v2/version/12/)), Version(rarity=50, version=VersionDetail(name=pearl, url=https://pokeapi.co/api/v2/version/13/)), Version(rarity=50, version=VersionDetail(name=platinum, url=https://pokeapi.co/api/v2/version/14/)), Version(rarity=50, version=VersionDetail(name=heartgold, url=https://pokeapi.co/api/v2/version/15/)), Version(rarity=50, version=VersionDetail(name=soulsilver, url=https://pokeapi.co/api/v2/version/16/)), Version(rarity=50, version=VersionDetail(name=black, url=https://pokeapi.co/api/v2/version/17/)), Version(rarity=50, version=VersionDetail(name=white, url=https://pokeapi.co/api/v2/version/18/))]), Item(item=ItemDetail(name=light-ball, url=https://pokeapi.co/api/v2/item/213/), versionDetails=[Version(rarity=5, version=VersionDetail(name=ruby, url=https://pokeapi.co/api/v2/version/7/)), Version(rarity=5, version=VersionDetail(name=sapphire, url=https://pokeapi.co/api/v2/version/8/)), Version(rarity=5, version=VersionDetail(name=emerald, url=https://pokeapi.co/api/v2/version/9/)), Version(rarity=5, version=VersionDetail(name=diamond, url=https://pokeapi.co/api/v2/version/12/)), Version(rarity=5, version=VersionDetail(name=pearl, url=https://pokeapi.co/api/v2/version/13/)), Version(rarity=5, version=VersionDetail(name=platinum, url=https://pokeapi.co/api/v2/version/14/)), Version(rarity=5, version=VersionDetail(name=heartgold, url=https://pokeapi.co/api/v2/version/15/)), Version(rarity=5, version=VersionDetail(name=soulsilver, url=https://pokeapi.co/api/v2/version/16/)), Version(rarity=1, version=VersionDetail(name=black, url=https://pokeapi.co/api/v2/version/17/)), Version(rarity=1, version=VersionDetail(name=white, url=https://pokeapi.co/api/v2/version/18/)), Version(rarity=5, version=VersionDetail(name=black-2, url=https://pokeapi.co/api/v2/version/21/)), Version(rarity=5, version=VersionDetail(name=white-2, url=https://pokeapi.co/api/v2/version/22/)), Version(rarity=5, version=VersionDetail(name=x, url=https://pokeapi.co/api/v2/version/23/)), Version(rarity=5, version=VersionDetail(name=y, url=https://pokeapi.co/api/v2/version/24/)), Version(rarity=5, version=VersionDetail(name=omega-ruby, url=https://pokeapi.co/api/v2/version/25/)), Version(rarity=5, version=VersionDetail(name=alpha-sapphire, url=https://pokeapi.co/api/v2/version/26/)), Version(rarity=5, version=VersionDetail(name=sun, url=https://pokeapi.co/api/v2/version/27/)), Version(rarity=5, version=VersionDetail(name=moon, url=https://pokeapi.co/api/v2/version/28/)), Version(rarity=5, version=VersionDetail(name=ultra-sun, url=https://pokeapi.co/api/v2/version/29/)), Version(rarity=5, version=VersionDetail(name=ultra-moon, url=https://pokeapi.co/api/v2/version/30/))])]))
+2025-07-16T23:09:24.579-06:00  WARN 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.s.c.c.w.WireMockTestExecutionListener  : You've used fixed ports for WireMock setup - will mark context as dirty. Please use random ports, as much as possible. Your tests will be faster and more reliable and this warning will go away
+2025-07-16T23:09:24.602-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.3)
+
+2025-07-16T23:09:24.734-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] c.b.s.service.PokemonServiceTest         : Starting PokemonServiceTest using Java 21.0.6 with PID 40252 (started by x374019 in /Users/x374019/Documentos/bankaya/soap-service)
+2025-07-16T23:09:24.734-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] c.b.s.service.PokemonServiceTest         : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2025-07-16T23:09:24.836-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-16T23:09:24.839-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 1 JPA repository interface.
+2025-07-16T23:09:24.900-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] EmbeddedDatabaseContextCustomizerFactory : Replacing 'dataSource' DataSource bean with embedded version
+2025-07-16T23:09:24.902-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=532a97a7-7609-3fbc-91ff-0d4d97764583
+2025-07-16T23:09:24.910-06:00  WARN 40252 --- [bankaya-pokemon-soap-service] [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [annotationActionEndpointMapping] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2025-07-16T23:09:24.911-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2025-07-16T23:09:24.912-06:00  WARN 40252 --- [bankaya-pokemon-soap-service] [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'io.zonky.test.db.config.EmbeddedDatabaseAutoConfiguration' of type [io.zonky.test.db.config.EmbeddedDatabaseAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [flywayPropertiesPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2025-07-16T23:09:25.036-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-16T23:09:25.037-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-16T23:09:25.041-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-16T23:09:25.048-06:00  WARN 40252 --- [bankaya-pokemon-soap-service] [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-16T23:09:25.049-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'io.zonky.test.db.provider.support.BlockingDatabaseWrapper@4d225497']
+	Database driver: undefined/unknown
+	Database version: 14.15
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-16T23:09:25.063-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-16T23:09:25.075-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-16T23:09:25.177-06:00  WARN 40252 --- [bankaya-pokemon-soap-service] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-16T23:09:25.719-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-07-16T23:09:25.740-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] c.b.s.service.PokemonServiceTest         : Started PokemonServiceTest in 1.022 seconds (process running for 10.159)
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.14.3</a> at Jul 16, 2025, 11:09:26 PM</p>
+</div>
+</div>
+</body>
+</html>

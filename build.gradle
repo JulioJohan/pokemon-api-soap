@@ -1,0 +1,166 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.3'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'jacoco'
+}
+
+
+group = 'com.bankaya'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	xjc
+	cucumberRuntime {
+		extendsFrom testImplementation
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:2025.0.0"
+		mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:4.0.4"
+	}
+}
+
+dependencies {
+	// Spring
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+	//validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	//Spring Cache
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'com.google.guava:guava:33.4.8-jre'
+
+	// design resilience
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'io.github.resilience4j:resilience4j-spring-boot3:2.2.0'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9'
+
+	// XJC
+	xjc 'org.glassfish.jaxb:jaxb-xjc:4.0.4'
+	xjc 'org.glassfish.jaxb:jaxb-runtime:4.0.4'
+
+	// WSDL y JAXB
+	implementation 'wsdl4j:wsdl4j'
+	implementation 'org.glassfish.jaxb:jaxb-runtime'
+	implementation 'org.springframework.ws:spring-ws-core:4.0.11'
+
+	// Database
+	implementation 'org.postgresql:postgresql'
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// OpenAPI
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0'
+
+	// Test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.ws:spring-ws-test:4.1.0'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'io.projectreactor:reactor-test'
+
+	testImplementation 'io.zonky.test:embedded-database-spring-test:2.6.0'
+	testImplementation 'io.zonky.test:embedded-postgres:2.1.0'
+	testImplementation 'org.springframework.cloud:spring-cloud-contract-wiremock'
+
+}
+
+task generateJaxbClasses {
+	def outputDir = file("${buildDir}/generated-sources/jaxb")
+	def xsdDir = file("src/main/resources")
+	def xsdFile = file("src/main/resources/pokemon.xsd")
+
+	inputs.file xsdFile
+	outputs.dir outputDir
+
+	doLast {
+		outputDir.mkdirs()
+		ant.taskdef(name: 'xjc',
+				classname: 'com.sun.tools.xjc.XJCTask',
+				classpath: configurations.xjc.asPath)
+
+		ant.xjc(destdir: outputDir,
+				package: 'com.bankaya.soap',
+				schema: xsdFile,
+				encoding: 'UTF-8') {
+			arg(value: '-extension')
+			arg(value: '-encoding')
+			arg(value: 'UTF-8')
+			produces(dir: outputDir, includes: '**/*.java')
+		}
+	}
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+task cucumber() {
+	dependsOn assemble, testClasses
+	doLast {
+		javaexec {
+			mainClass = "io.cucumber.core.cli.Main"
+			classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+			args = [
+					'--plugin', 'pretty',
+					'--plugin', 'html:build/reports/cucumber.html',
+					'--glue', 'com.bankaya.soap_service.cucumber',
+					'src/test/resources/features'
+			]
+		}
+	}
+}
+
+test {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+	systemProperty('cucumber.junit-platform.naming-strategy', 'long')
+	systemProperty('cucumber.plugin', 'pretty, html:build/reports/cucumber.html')
+	systemProperty('cucumber.glue', 'com.bankaya.soap_service.cucumber')
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir "${buildDir}/generated-sources/jaxb"
+		}
+	}
+}
+
+compileJava.dependsOn generateJaxbClasses
+
+jacocoTestReport {
+	dependsOn test
+	reports {
+		xml.required = true
+		html.required = true
+	}
+}

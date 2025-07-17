@@ -1,0 +1,34 @@
+services:
+  pokemon-app:
+    container_name: pokemon-app
+    depends_on:
+      - postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - pokemon-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: pokemon
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - pokemon-network
+
+
+networks:
+  pokemon-network:
+    driver: bridge

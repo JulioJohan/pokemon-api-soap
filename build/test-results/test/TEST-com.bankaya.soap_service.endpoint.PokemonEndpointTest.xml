@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bankaya.soap_service.endpoint.PokemonEndpointTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-07-17T05:09:18.343Z" hostname="GSPNXTTx374019M" time="0.198">
+  <properties/>
+  <testcase name="getPokemonHeldItemsTest()" classname="com.bankaya.soap_service.endpoint.PokemonEndpointTest" time="0.137"/>
+  <testcase name="getPokemonBaseExperienceTest()" classname="com.bankaya.soap_service.endpoint.PokemonEndpointTest" time="0.03"/>
+  <testcase name="getPokemonAbilitiesTest()" classname="com.bankaya.soap_service.endpoint.PokemonEndpointTest" time="0.011"/>
+  <testcase name="getPokemonLocationAreaResponseTest()" classname="com.bankaya.soap_service.endpoint.PokemonEndpointTest" time="0.006"/>
+  <testcase name="getPokemonNameTest()" classname="com.bankaya.soap_service.endpoint.PokemonEndpointTest" time="0.006"/>
+  <testcase name="getPokemonIdTest()" classname="com.bankaya.soap_service.endpoint.PokemonEndpointTest" time="0.005"/>
+  <system-out><![CDATA[23:09:17.236 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.bankaya.soap_service.endpoint.PokemonEndpointTest]: PokemonEndpointTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:09:17.399 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.bankaya.soap_service.SoapServiceApplication for test class com.bankaya.soap_service.endpoint.PokemonEndpointTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.3)
+
+2025-07-16T23:09:17.887-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] c.b.s.endpoint.PokemonEndpointTest       : Starting PokemonEndpointTest using Java 21.0.6 with PID 40252 (started by x374019 in /Users/x374019/Documentos/bankaya/soap-service)
+2025-07-16T23:09:17.888-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] c.b.s.endpoint.PokemonEndpointTest       : No active profile set, falling back to 1 default profile: "default"
+2025-07-16T23:09:18.161-06:00  WARN 40252 --- [bankaya-pokemon-soap-service] [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [annotationActionEndpointMapping] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2025-07-16T23:09:18.180-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2025-07-16T23:09:18.322-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] o.s.ws.soap.saaj.SaajSoapMessageFactory  : Creating SAAJ 1.3 MessageFactory with SOAP 1.1 Protocol
+2025-07-16T23:09:18.338-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] c.b.s.endpoint.PokemonEndpointTest       : Started PokemonEndpointTest in 0.771 seconds (process running for 2.758)
+2025-07-16T23:09:18.515-06:00  INFO 40252 --- [bankaya-pokemon-soap-service] [    Test worker] c.b.s.endpoint.PokemonEndpoint           : Fetching abilities for Pokemon: PokemonResponse(id=132, name=ditto, abilities=[Ability(ability=AbilityDetail(name=limber, url=https://pokeapi.co/api/v2/ability/7/), isHidden=false, slot=null), Ability(ability=AbilityDetail(name=imposter, url=https://pokeapi.co/api/v2/ability/150/), isHidden=false, slot=null)], baseExperience=101, locationAreaEncounters=https://pokeapi.co/api/v2/pokemon/132/encounters, heldItems=[Item(item=ItemDetail(name=quick-powder, url=https://pokeapi.co/api/v2/item/251/), versionDetails=null), Item(item=ItemDetail(name=null, url=null), versionDetails=null)])
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

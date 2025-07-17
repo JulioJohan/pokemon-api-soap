@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PokemonEndpoint.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">soap-service</a> &gt; <a href="index.source.html" class="el_package">com.bankaya.soap_service.endpoint</a> &gt; <span class="el_source">PokemonEndpoint.java</span></div><h1>PokemonEndpoint.java</h1><pre class="source lang-java linenums">package com.bankaya.soap_service.endpoint;
+
+
+import com.bankaya.soap_service.model.PokemonResponse;
+import com.bankaya.soap_service.service.PokemonService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.ws.server.endpoint.annotation.Endpoint;
+import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+
+import com.bankaya.soap.*;
+
+
+
+<span class="fc" id="L25">@Slf4j</span>
+@Endpoint
+@RequiredArgsConstructor
+public class PokemonEndpoint {
+    private static final String NAMESPACE_URI = &quot;http://bankaya/pokemon/api/v1&quot;;
+    private final PokemonService pokemonService;
+    private final HttpServletRequest httpServletRequest;
+
+
+    @Operation(summary = &quot;Get Pokemon by name and return abilities&quot; ,
+            description = &quot;This endpoint retrieves the abilities of a Pokemon by its name. &quot; +
+            &quot;It returns a list of abilities with their names and URLs.&quot;,
+            requestBody = @RequestBody(
+                    required = true,
+                    content = @Content(
+                            mediaType = &quot;application/xml&quot;,
+                            schema = @Schema(
+                                    implementation = GetPokemonAbilitiesRequest.class
+                            ),
+                            examples = {
+                                    @ExampleObject(
+                                            name = &quot;Request Abilities &quot;,
+                                            summary = &quot;Example of a request to get Pokemon abilities&quot;,
+                                            value = &quot;&quot;&quot;
+                                                    &lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;
+                                                                      xmlns:gs=&quot;http://bankaya/pokemon/api/v1&quot;&gt;
+                                                        &lt;soapenv:Header/&gt;
+                                                        &lt;soapenv:Body&gt;
+                                                            &lt;gs:getPokemonAbilitiesRequest&gt;
+                                                                &lt;gs:name&gt;pikachu&lt;/gs:name&gt;
+                                                            &lt;/gs:getPokemonAbilitiesRequest&gt;
+                                                        &lt;/soapenv:Body&gt;
+                                                    &lt;/soapenv:Envelope&gt;
+                                                    
+                                                    &quot;&quot;&quot;
+                                    )
+                            }
+                    )
+            ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = &quot;200&quot;,
+                            description = &quot;Successfully retrieved Pokemon abilities&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/xml&quot;,
+                                    schema = @Schema(implementation = GetPokemonAbilitiesResponse.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = &quot;404&quot;,
+                            description = &quot;Pokemon not found&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/xml&quot;,
+                                    examples = {
+                                            @ExampleObject(
+                                                    name = &quot;Pokemon Not Found&quot;,
+                                                    summary = &quot;Example of a response when the Pokemon is not found&quot;,
+                                                    value = &quot;&quot;&quot;
+                                                            &lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+                                                               &lt;SOAP-ENV:Header /&gt;
+                                                               &lt;SOAP-ENV:Body&gt;
+                                                                 &lt;SOAP-ENV:Fault&gt;
+                                                                   &lt;faultcode&gt;SOAP-ENV:Server&lt;/faultcode&gt;
+                                                                   &lt;faultstring xml:lang=&quot;en&quot;&gt;[404 Not Found] during [GET] to [https://pokeapi.co/api/v2/pokemon/pidawdkachu] [PokemonFeignClient#getInfoPokemon(String)]: [Not Found]&lt;/faultstring&gt;
+                                                                 &lt;/SOAP-ENV:Fault&gt;
+                                                               &lt;/SOAP-ENV:Body&gt;
+                                                            &lt;/SOAP-ENV:Envelope&gt;
+                                                            &quot;&quot;&quot;
+                                            )
+                                    }
+                            )
+                    )
+            }
+
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Successfully retrieved Pokemon abilities&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Pokemon not found&quot;),
+    })
+    @PayloadRoot(namespace = NAMESPACE_URI,localPart = &quot;getPokemonAbilitiesRequest&quot;)
+    @ResponsePayload
+    public GetPokemonAbilitiesResponse getPokemonAbilities(@RequestPayload GetPokemonAbilitiesRequest request){
+<span class="fc" id="L107">        PokemonResponse pokemonResponse = pokemonService</span>
+<span class="fc" id="L108">                .getInfoPokemon(request.getName(), &quot;getPokemonAbilities&quot;,httpServletRequest.getRemoteAddr());</span>
+
+<span class="fc" id="L110">        log.info(&quot;Fetching abilities for Pokemon: {}&quot;, pokemonResponse);</span>
+<span class="fc" id="L111">        GetPokemonAbilitiesResponse response = new GetPokemonAbilitiesResponse();</span>
+<span class="fc" id="L112">        pokemonResponse.getAbilities().forEach(ability -&gt; {</span>
+<span class="fc" id="L113">            AbilitiesDetail abilities = new AbilitiesDetail();</span>
+<span class="fc" id="L114">            abilities.setName(ability.getAbility().getName());</span>
+<span class="fc" id="L115">            abilities.setUrl(ability.getAbility().getUrl());</span>
+<span class="fc" id="L116">            response.getAbilities().add(abilities);</span>
+<span class="fc" id="L117">        });</span>
+<span class="fc" id="L118">        return response;</span>
+    }
+
+
+
+
+    @Operation(summary = &quot;Get Pokemon by name and return experience&quot; ,
+            description = &quot;This endpoint retrieves the base experience of a Pokemon by its name. &quot;,
+            requestBody = @RequestBody(
+                    required = true,
+                    content = @Content(
+                            mediaType = &quot;application/xml&quot;,
+                            schema = @Schema(
+                                    implementation = GetPokemonBaseExperienceRequest.class
+                            )
+                    )
+            ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = &quot;200&quot;,
+                            description = &quot;Successfully retrieved Pokemon experience&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/xml&quot;,
+                                    schema = @Schema(implementation = GetPokemonBaseExperienceResponse.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = &quot;404&quot;,
+                            description = &quot;Pokemon not found&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/xml&quot;,
+                                    examples = {
+                                            @ExampleObject(
+                                                    name = &quot;Pokemon Not Found&quot;,
+                                                    summary = &quot;Example of a response when the Pokemon is not found&quot;,
+                                                    value = &quot;&quot;&quot;
+                                                            &lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+                                                               &lt;SOAP-ENV:Header /&gt;
+                                                               &lt;SOAP-ENV:Body&gt;
+                                                                 &lt;SOAP-ENV:Fault&gt;
+                                                                   &lt;faultcode&gt;SOAP-ENV:Server&lt;/faultcode&gt;
+                                                                   &lt;faultstring xml:lang=&quot;en&quot;&gt;[404 Not Found]\s
+                                                                   during [GET] to [https://pokeapi.co/api/v2/pokemon/pidawdkachu]\s
+                                                                   [PokemonFeignClient#getInfoPokemon(String)]:\s
+                                                                   [Not Found]&lt;/faultstring&gt;
+                                                                 &lt;/SOAP-ENV:Fault&gt;
+                                                               &lt;/SOAP-ENV:Body&gt;
+                                                            &lt;/SOAP-ENV:Envelope&gt;
+                                                           \s&quot;&quot;&quot;
+                                            )
+                                    }
+                            )
+                    )
+            }
+
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Successfully retrieved Pokemon experience&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Pokemon not found&quot;),
+    })
+    @PayloadRoot(namespace = NAMESPACE_URI,localPart = &quot;getPokemonBaseExperienceRequest&quot;)
+    @ResponsePayload
+    public GetPokemonBaseExperienceResponse getPokemonBaseExperience(@RequestPayload GetPokemonBaseExperienceRequest request){
+<span class="fc" id="L181">        PokemonResponse pokemonResponse = pokemonService</span>
+<span class="fc" id="L182">                .getInfoPokemon(request.getName(),&quot;getPokemonBaseExperience&quot;, httpServletRequest.getRemoteAddr());</span>
+<span class="fc" id="L183">        GetPokemonBaseExperienceResponse response = new GetPokemonBaseExperienceResponse();</span>
+<span class="fc" id="L184">        response.setBaseExperience(pokemonResponse.getBaseExperience());</span>
+<span class="fc" id="L185">        return response;</span>
+    }
+
+    @Operation(summary = &quot;Get Pokemon by name and return held items&quot; ,
+            description = &quot;This endpoint retrieves the held items of a Pokemon by its name. &quot;,
+            requestBody = @RequestBody(
+                    required = true,
+                    content = @Content(
+                            mediaType = &quot;application/xml&quot;,
+                            schema = @Schema(
+                                    implementation = GetPokemonHeldItemsRequest.class
+                            )
+                    )
+            ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = &quot;200&quot;,
+                            description = &quot;Successfully retrieved Pokemon held items&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/xml&quot;,
+                                    schema = @Schema(implementation = GetPokemonHeldItemsResponse.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = &quot;404&quot;,
+                            description = &quot;Pokemon not found&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/xml&quot;,
+                                    examples = {
+                                            @ExampleObject(
+                                                    name = &quot;Pokemon Not Found&quot;,
+                                                    summary = &quot;Example of a response when the Pokemon is not found&quot;,
+                                                    value = &quot;&quot;&quot;
+                                                            &lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+                                                               &lt;SOAP-ENV:Header /&gt;
+                                                               &lt;SOAP-ENV:Body&gt;
+                                                                 &lt;SOAP-ENV:Fault&gt;
+                                                                   &lt;faultcode&gt;SOAP-ENV:Server&lt;/faultcode&gt;
+                                                                   &lt;faultstring xml:lang=&quot;en&quot;&gt;[404 Not Found]\s
+                                                                   during [GET] to [https://pokeapi.co/api/v2/pokemon/pidawdkachu]\s
+                                                                   [PokemonFeignClient#getInfoPokemon(String)]:\s
+                                                                   [Not Found]&lt;/faultstring&gt;
+                                                                 &lt;/SOAP-ENV:Fault&gt;
+                                                               &lt;/SOAP-ENV:Body&gt;
+                                                            &lt;/SOAP-ENV:Envelope&gt;
+                                                           \s&quot;&quot;&quot;
+                                            )
+                                    }
+                            )
+                    )
+            }
+
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Successfully retrieved Pokemon held items&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Pokemon not found&quot;),
+    })
+    @PayloadRoot(namespace = NAMESPACE_URI,localPart = &quot;getPokemonHeldItemsRequest&quot;)
+    @ResponsePayload
+    public GetPokemonHeldItemsResponse getPokemonHeldItems(@RequestPayload GetPokemonHeldItemsRequest request){
+<span class="fc" id="L245">        PokemonResponse pokemonResponse = pokemonService</span>
+<span class="fc" id="L246">                .getInfoPokemon(request.getName(),&quot;getPokemonHeldItems&quot;,httpServletRequest.getRemoteAddr());</span>
+<span class="fc" id="L247">        GetPokemonHeldItemsResponse response = new GetPokemonHeldItemsResponse();</span>
+<span class="fc" id="L248">        pokemonResponse.getHeldItems().forEach(heldItem -&gt; {</span>
+<span class="fc" id="L249">            Items item = new Items();</span>
+<span class="fc" id="L250">            item.setName(heldItem.getItem().getName());</span>
+<span class="fc" id="L251">            item.setUrl(heldItem.getItem().getUrl());</span>
+<span class="fc" id="L252">            response.getHeldItems().add(item);</span>
+<span class="fc" id="L253">        });</span>
+<span class="fc" id="L254">        return response;</span>
+    }
+
+
+    @Operation(summary = &quot;Get Pokemon by name and return pokemon ID&quot; ,
+            description = &quot;This endpoint retrieves the id of a Pokemon by its name. &quot;,
+            requestBody = @RequestBody(
+                    required = true,
+                    content = @Content(
+                            mediaType = &quot;application/xml&quot;,
+                            schema = @Schema(
+                                    implementation = GetPokemonIdRequest.class
+                            )
+                    )
+            ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = &quot;200&quot;,
+                            description = &quot;Successfully retrieved Pokemon id&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/xml&quot;,
+                                    schema = @Schema(implementation = GetPokemonIdResponse.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = &quot;404&quot;,
+                            description = &quot;Pokemon not found&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/xml&quot;,
+                                    examples = {
+                                            @ExampleObject(
+                                                    name = &quot;Pokemon Not Found&quot;,
+                                                    summary = &quot;Example of a response when the Pokemon is not found&quot;,
+                                                    value = &quot;&quot;&quot;
+                                                            &lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+                                                               &lt;SOAP-ENV:Header /&gt;
+                                                               &lt;SOAP-ENV:Body&gt;
+                                                                 &lt;SOAP-ENV:Fault&gt;
+                                                                   &lt;faultcode&gt;SOAP-ENV:Server&lt;/faultcode&gt;
+                                                                   &lt;faultstring xml:lang=&quot;en&quot;&gt;[404 Not Found]\s
+                                                                   during [GET] to [https://pokeapi.co/api/v2/pokemon/pidawdkachu]\s
+                                                                   [PokemonFeignClient#getInfoPokemon(String)]:\s
+                                                                   [Not Found]&lt;/faultstring&gt;
+                                                                 &lt;/SOAP-ENV:Fault&gt;
+                                                               &lt;/SOAP-ENV:Body&gt;
+                                                            &lt;/SOAP-ENV:Envelope&gt;
+                                                           \s&quot;&quot;&quot;
+                                            )
+                                    }
+                            )
+                    )
+            }
+
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Successfully retrieved Pokemon id&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Pokemon not found&quot;),
+    })
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = &quot;getPokemonIdRequest&quot;)
+    @ResponsePayload
+    public GetPokemonIdResponse getPokemonId(@RequestPayload GetPokemonIdRequest request){
+<span class="fc" id="L315">        PokemonResponse pokemonResponse = pokemonService</span>
+<span class="fc" id="L316">                .getInfoPokemon(request.getName(), &quot;getPokemonId&quot;,httpServletRequest.getRemoteAddr());</span>
+<span class="fc" id="L317">        GetPokemonIdResponse response = new GetPokemonIdResponse();</span>
+<span class="fc" id="L318">        response.setId(pokemonResponse.getId());</span>
+<span class="fc" id="L319">        return response;</span>
+    }
+
+    @Operation(summary = &quot;Get Pokemon by name and return pokemon name&quot; ,
+            description = &quot;This endpoint retrieves the name of a Pokemon by its name. &quot;,
+            requestBody = @RequestBody(
+                    required = true,
+                    content = @Content(
+                            mediaType = &quot;application/xml&quot;,
+                            schema = @Schema(
+                                    implementation = GetPokemonNameRequest.class
+                            )
+                    )
+            ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = &quot;200&quot;,
+                            description = &quot;Successfully retrieved Pokemon name&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/xml&quot;,
+                                    schema = @Schema(implementation = GetPokemonNameResponse.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = &quot;404&quot;,
+                            description = &quot;Pokemon not found&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/xml&quot;,
+                                    examples = {
+                                            @ExampleObject(
+                                                    name = &quot;Pokemon Not Found&quot;,
+                                                    summary = &quot;Example of a response when the Pokemon is not found&quot;,
+                                                    value = &quot;&quot;&quot;
+                                                            &lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+                                                               &lt;SOAP-ENV:Header /&gt;
+                                                               &lt;SOAP-ENV:Body&gt;
+                                                                 &lt;SOAP-ENV:Fault&gt;
+                                                                   &lt;faultcode&gt;SOAP-ENV:Server&lt;/faultcode&gt;
+                                                                   &lt;faultstring xml:lang=&quot;en&quot;&gt;[404 Not Found]\s
+                                                                   during [GET] to [https://pokeapi.co/api/v2/pokemon/pidawdkachu]\s
+                                                                   [PokemonFeignClient#getInfoPokemon(String)]:\s
+                                                                   [Not Found]&lt;/faultstring&gt;
+                                                                 &lt;/SOAP-ENV:Fault&gt;
+                                                               &lt;/SOAP-ENV:Body&gt;
+                                                            &lt;/SOAP-ENV:Envelope&gt;
+                                                           \s&quot;&quot;&quot;
+                                            )
+                                    }
+                            )
+                    )
+            }
+
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Successfully retrieved Pokemon name&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Pokemon not found&quot;),
+    })
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = &quot;getPokemonNameRequest&quot;)
+    @ResponsePayload
+    public GetPokemonNameResponse getPokemonName(@RequestPayload GetPokemonNameRequest request){
+<span class="fc" id="L379">        PokemonResponse pokemonResponse = pokemonService</span>
+<span class="fc" id="L380">                .getInfoPokemon(request.getName(),&quot;getPokemonName&quot;, httpServletRequest.getRemoteAddr());</span>
+<span class="fc" id="L381">        GetPokemonNameResponse response = new GetPokemonNameResponse();</span>
+<span class="fc" id="L382">        response.setName(pokemonResponse.getName());</span>
+<span class="fc" id="L383">        return response;</span>
+    }
+
+
+    @Operation(summary = &quot;Get Pokemon by name and return pokemon location area encounters&quot; ,
+            description = &quot;This endpoint retrieves the location area encounters of a Pokemon by its name. &quot;,
+            requestBody = @RequestBody(
+                    required = true,
+                    content = @Content(
+                            mediaType = &quot;application/xml&quot;,
+                            schema = @Schema(
+                                    implementation = GetPokemonLocationAreaRequest.class
+                            )
+                    )
+            ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = &quot;200&quot;,
+                            description = &quot;Successfully retrieved Pokemon location area encounters&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/xml&quot;,
+                                    schema = @Schema(implementation = GetPokemonLocationAreaResponse.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = &quot;404&quot;,
+                            description = &quot;Pokemon not found&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/xml&quot;,
+                                    examples = {
+                                            @ExampleObject(
+                                                    name = &quot;Pokemon Not Found&quot;,
+                                                    summary = &quot;Example of a response when the Pokemon is not found&quot;,
+                                                    value = &quot;&quot;&quot;
+                                                            &lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+                                                               &lt;SOAP-ENV:Header /&gt;
+                                                               &lt;SOAP-ENV:Body&gt;
+                                                                 &lt;SOAP-ENV:Fault&gt;
+                                                                   &lt;faultcode&gt;SOAP-ENV:Server&lt;/faultcode&gt;
+                                                                   &lt;faultstring xml:lang=&quot;en&quot;&gt;[404 Not Found]\s
+                                                                   during [GET] to [https://pokeapi.co/api/v2/pokemon/pidawdkachu]\s
+                                                                   [PokemonFeignClient#getInfoPokemon(String)]:\s
+                                                                   [Not Found]&lt;/faultstring&gt;
+                                                                 &lt;/SOAP-ENV:Fault&gt;
+                                                               &lt;/SOAP-ENV:Body&gt;
+                                                            &lt;/SOAP-ENV:Envelope&gt;
+                                                           \s&quot;&quot;&quot;
+                                            )
+                                    }
+                            )
+                    )
+            }
+
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Successfully retrieved Pokemon name&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Pokemon not found&quot;),
+    })
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = &quot;getPokemonLocationAreaRequest&quot;)
+    @ResponsePayload
+    public GetPokemonLocationAreaResponse getPokemonLocationAreaEncounters(@RequestPayload GetPokemonLocationAreaRequest request){
+<span class="fc" id="L444">        PokemonResponse pokemonResponse = pokemonService</span>
+<span class="fc" id="L445">                .getInfoPokemon(request.getName(), &quot;getPokemonLocationAreaEncounters&quot;,httpServletRequest.getRemoteAddr());</span>
+<span class="fc" id="L446">        GetPokemonLocationAreaResponse response = new GetPokemonLocationAreaResponse();</span>
+<span class="fc" id="L447">        response.setLocationAreaEncounters(pokemonResponse.getLocationAreaEncounters());</span>
+<span class="fc" id="L448">        return response;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

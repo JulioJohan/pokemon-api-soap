@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PokemonService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">soap-service</a> &gt; <a href="index.source.html" class="el_package">com.bankaya.soap_service.service</a> &gt; <span class="el_source">PokemonService.java</span></div><h1>PokemonService.java</h1><pre class="source lang-java linenums">package com.bankaya.soap_service.service;
+
+
+import com.bankaya.soap_service.exception.NotFoundException;
+import com.bankaya.soap_service.feign.PokemonFeignClient;
+import com.bankaya.soap_service.model.PokemonResponse;
+import com.bankaya.soap_service.model.entity.ResponseLogEntity;
+import com.bankaya.soap_service.repository.ResponseLogRepository;
+import io.github.resilience4j.retry.annotation.Retry;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+<span class="fc" id="L22">@Slf4j</span>
+@Service
+@RequiredArgsConstructor
+public class PokemonService {
+
+    private final ResponseLogRepository responseLogRepository;
+    private final PokemonFeignClient pokemonFeignClient;
+
+    @Retry(name = &quot;pokemonApi&quot;)
+    @Cacheable(value = &quot;pokemonCache&quot;, key = &quot;#name&quot;, unless = &quot;#result == null&quot;)
+    public PokemonResponse getInfoPokemon(String name,String methodEndpoint,String clientIp){
+<span class="fc" id="L33">        log.info(&quot;Fetching Pokemon data for {}:&quot;, name);</span>
+        ResponseLogEntity responseLogEntity = ResponseLogEntity
+<span class="fc" id="L35">                .builder()</span>
+<span class="fc" id="L36">                .originIp(clientIp)</span>
+<span class="fc" id="L37">                .requestDate(LocalDateTime.now())</span>
+<span class="fc" id="L38">                .executedMethod(methodEndpoint)</span>
+<span class="fc" id="L39">                .request(name)</span>
+<span class="fc" id="L40">                .build();</span>
+
+<span class="fc" id="L42">        long startTime = System.nanoTime();</span>
+<span class="fc" id="L43">        Optional&lt;PokemonResponse&gt; response = pokemonFeignClient.getInfoPokemon(name.toLowerCase());</span>
+<span class="fc" id="L44">        long endTime = System.nanoTime();</span>
+<span class="fc" id="L45">        long duration = (endTime - startTime) / 1_000_000;</span>
+<span class="fc" id="L46">        responseLogEntity.setResponse(response.map(PokemonResponse::toString).orElse(&quot;No data found&quot;));</span>
+<span class="fc" id="L47">        responseLogEntity.setRequestDuration(duration);</span>
+<span class="fc" id="L48">        log.info(&quot;Response {}&quot;,responseLogEntity);</span>
+<span class="fc" id="L49">        responseLogRepository.save(responseLogEntity);</span>
+<span class="pc" id="L50">        return response.orElseThrow(() -&gt; new NotFoundException(HttpStatus.NOT_FOUND, &quot;Pokemon not found&quot;));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
