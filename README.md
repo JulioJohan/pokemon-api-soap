@@ -14,7 +14,7 @@ Utiliza clientes Feign para consumir APIs externas REST, PostgreSQL para persist
 - **Caché para mejorar el rendimiento**
 - **Configuración flexible vía `application.yml` cambiar el hostname si se ejecuta en local o en docker.**
 - **Docker = postgres**
-- **Local = localhot**
+- **Local = localhost**
 
 
 
