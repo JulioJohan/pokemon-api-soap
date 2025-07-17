@@ -36,7 +36,7 @@ src/test/java/com/bankaya/soap_service/   # Pruebas unitarias e integrales
 ```
 
 ## Diagrama de Componentes
-<img width="613" height="461" alt="Image" src="https://github.com/user-attachments/assets/9d698b80-5c1e-4c57-a09f-2c005654045c" />
+<img width="613" height="461" alt="Image" src="https://github.com/user-attachments/assets/ebafd161-c68d-4bdf-8c89-1e9e84a5a16f" />
 
 ## Primeros Pasos
 
